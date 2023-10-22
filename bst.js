@@ -9,6 +9,10 @@ const Tree = (arr) => {
 };
 
 const buildTree = (array) => {
+  // Use new Set(array) to store unique values (remove duplicates)
+  // Use sort((a, b) => a - b) to sort array values in ascending order
+  const sortedArray = Array.from(new Set(array)).sort((a, b) => a - b);
+
   const createBalancedBST = (arr, start, end) => {
     if (start > end) {
       return null;
@@ -22,7 +26,7 @@ const buildTree = (array) => {
     return node;
   };
 
-  return createBalancedBST(array, 0, array.length - 1);
+  return createBalancedBST(sortedArray, 0, sortedArray.length - 1);
 };
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -38,7 +42,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-const array = [1, 2, 3, 4, 5, 6, 7];
+const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const BST = Tree(array);
 console.log(BST.root);
 prettyPrint(BST.root);
