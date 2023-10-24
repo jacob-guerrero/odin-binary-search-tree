@@ -73,6 +73,18 @@ const findMin = (root) => {
   return root.value;
 };
 
+const find = (root, val) => {
+  if (root === null || root.value === val) {
+    return root;
+  }
+
+  if (val < root.value) {
+    return find(root.left, val);
+  } else {
+    return find(root.right, val);
+  }
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -94,3 +106,4 @@ insert(BST.root, 15);
 prettyPrint(BST.root);
 deleteNode(BST.root, 8);
 prettyPrint(BST.root);
+console.log(find(BST.root, 9));
