@@ -43,6 +43,36 @@ const insert = (root, value) => {
   return root;
 };
 
+const deleteNode = (root, value) => {
+  if (root === null) {
+    return root;
+  }
+
+  if (value < root.value) {
+    root.left = deleteNode(root.left, value);
+  } else if (value > root.value) {
+    root.right = deleteNode(root.right, value);
+  } else {
+    if (root.left === null) {
+      return root.right;
+    } else if (root.right === null) {
+      return root.left;
+    }
+
+    root.value = findMin(root.right);
+    root.right = deleteNode(root.right, root.value);
+  }
+
+  return root;
+};
+
+const findMin = (root) => {
+  while (root.left !== null) {
+    root = root.left;
+  }
+  return root.value;
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -61,4 +91,6 @@ const BST = Tree(array);
 console.log(BST.root);
 prettyPrint(BST.root);
 insert(BST.root, 15);
+prettyPrint(BST.root);
+deleteNode(BST.root, 8);
 prettyPrint(BST.root);
