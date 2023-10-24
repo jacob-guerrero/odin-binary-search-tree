@@ -29,6 +29,20 @@ const buildTree = (array) => {
   return createBalancedBST(sortedArray, 0, sortedArray.length - 1);
 };
 
+const insert = (root, value) => {
+  if (root === null) {
+    return createNode(value);
+  }
+
+  if (value < root.value) {
+    root.left = insert(root.left, value);
+  } else if (value > root.value) {
+    root.right = insert(root.right, value);
+  }
+
+  return root;
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -45,4 +59,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const BST = Tree(array);
 console.log(BST.root);
+prettyPrint(BST.root);
+insert(BST.root, 15);
 prettyPrint(BST.root);
