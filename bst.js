@@ -85,6 +85,36 @@ const find = (root, val) => {
   }
 };
 
+// Traverse the tree in breadth-first level order:
+const levelOrder = (root, func = null) => {
+  const result = [];
+  const queue = [];
+
+  if (root !== null) {
+    queue.push(root);
+  }
+
+  while (queue.length > 0) {
+    const node = queue.shift();
+    if (func !== null) {
+      func(node);
+    } else {
+      result.push(node.value);
+    }
+
+    if (node.left !== null) {
+      queue.push(node.left);
+    }
+    if (node.right !== null) {
+      queue.push(node.right);
+    }
+  }
+
+  if (func === null) {
+    return result;
+  }
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -107,3 +137,4 @@ prettyPrint(BST.root);
 deleteNode(BST.root, 8);
 prettyPrint(BST.root);
 console.log(find(BST.root, 9));
+console.log(levelOrder(BST.root));
