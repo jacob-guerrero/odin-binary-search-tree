@@ -115,6 +115,29 @@ const levelOrder = (root, func = null) => {
   }
 };
 
+// Inorder traversal: Left -> Node -> Right
+const inorder = (root, func = null) => {
+  const result = [];
+
+  const traverse = (node) => {
+    if (node !== null) {
+      traverse(node.left);
+      if (func !== null) {
+        func(node);
+      } else {
+        result.push(node.value);
+      }
+      traverse(node.right);
+    }
+  };
+
+  traverse(root);
+
+  if (func === null) {
+    return result;
+  }
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -138,3 +161,4 @@ deleteNode(BST.root, 8);
 prettyPrint(BST.root);
 console.log(find(BST.root, 9));
 console.log(levelOrder(BST.root));
+console.log(inorder(BST.root));
