@@ -161,6 +161,29 @@ const preorder = (root, func = null) => {
   }
 };
 
+// Postorder traversal: Left -> Right -> Node
+const postorder = (root, func = null) => {
+  const result = [];
+
+  const traverse = (node) => {
+    if (node !== null) {
+      traverse(node.left);
+      traverse(node.right);
+      if (func !== null) {
+        func(node);
+      } else {
+        result.push(node.value);
+      }
+    }
+  };
+
+  traverse(root);
+
+  if (func === null) {
+    return result;
+  }
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -186,3 +209,4 @@ console.log(find(BST.root, 9));
 console.log(levelOrder(BST.root));
 console.log(inorder(BST.root));
 console.log(preorder(BST.root));
+console.log(postorder(BST.root))
