@@ -184,6 +184,17 @@ const postorder = (root, func = null) => {
   }
 };
 
+const height = (node) => {
+  if (node === null) {
+    return -1; // Height of an empty node is -1
+  }
+
+  const leftHeight = height(node.left);
+  const rightHeight = height(node.right);
+
+  return 1 + Math.max(leftHeight, rightHeight);
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -209,4 +220,5 @@ console.log(find(BST.root, 9));
 console.log(levelOrder(BST.root));
 console.log(inorder(BST.root));
 console.log(preorder(BST.root));
-console.log(postorder(BST.root))
+console.log(postorder(BST.root));
+console.log(height(find(BST.root, 9)));
