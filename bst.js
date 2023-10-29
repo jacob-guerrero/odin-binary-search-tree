@@ -195,6 +195,28 @@ const height = (node) => {
   return 1 + Math.max(leftHeight, rightHeight);
 };
 
+const depth = (node, root) => {
+  if (root === null) {
+    return -1; // Depth of an empty node or root node is -1
+  }
+
+  let count = -1;
+
+  if (
+    root.value == node.value ||
+    // Otherwise, check if node is
+    // present in the left subtree
+    (count = depth(node, root.left)) >= 0 ||
+    // Otherwise, check if node is
+    // present in the right subtree
+    (count = depth(node, root.right)) >= 0
+  )
+    // Return depth of the node
+    return count + 1;
+
+  return count;
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -222,3 +244,4 @@ console.log(inorder(BST.root));
 console.log(preorder(BST.root));
 console.log(postorder(BST.root));
 console.log(height(find(BST.root, 9)));
+console.log(depth(find(BST.root, 23), BST.root));
