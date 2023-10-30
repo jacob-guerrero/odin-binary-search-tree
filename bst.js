@@ -217,6 +217,30 @@ const depth = (node, root) => {
   return count;
 };
 
+const isBalanced = (root) => {
+  const checkBalance = (node) => {
+    if (node === null) {
+      return { balanced: true, height: -1 };
+    }
+
+    const left = checkBalance(node.left);
+    if (!left.balanced) {
+      return { balanced: false, height: 0 };
+    }
+
+    const right = checkBalance(node.right);
+    if (!right.balanced) {
+      return { balanced: false, height: 0 };
+    }
+
+    const balanced = Math.abs(left.height - right.height) <= 1;
+    const height = Math.max(left.height, right.height) + 1;
+    return { balanced, height };
+  };
+
+  return checkBalance(root).balanced;
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -245,3 +269,7 @@ console.log(preorder(BST.root));
 console.log(postorder(BST.root));
 console.log(height(find(BST.root, 9)));
 console.log(depth(find(BST.root, 23), BST.root));
+console.log(isBalanced(BST.root));
+deleteNode(BST.root, 3);
+deleteNode(BST.root, 1);
+console.log(isBalanced(BST.root));
