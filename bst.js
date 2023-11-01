@@ -242,7 +242,7 @@ const isBalanced = (root) => {
 };
 
 const rebalance = (root) => {
-  const values =  inorder(root);
+  const values = inorder(root);
 
   const newRoot = Tree(values);
   return newRoot;
@@ -261,7 +261,7 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+/* const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 const BST = Tree(array);
 console.log(BST.root);
 prettyPrint(BST.root);
@@ -283,4 +283,19 @@ console.log(isBalanced(BST.root));
 const BSTRebalanced = rebalance(BST.root);
 prettyPrint(BSTRebalanced.root);
 console.log(levelOrder(BSTRebalanced.root));
-console.log(isBalanced(BSTRebalanced.root));
+console.log(isBalanced(BSTRebalanced.root)); */
+
+const randNumArray = Array.from({ length: 10 }, () =>
+  Math.floor(Math.random() * 100)
+);
+const BSTRandom = Tree(randNumArray);
+const isBSTBalanced = isBalanced(BSTRandom.root);
+console.log(isBSTBalanced);
+
+prettyPrint(BSTRandom.root);
+console.log(levelOrder(BSTRandom.root));
+console.log(preorder(BSTRandom.root));
+console.log(postorder(BSTRandom.root));
+console.log(inorder(BSTRandom.root));
+
+console.log(randNumArray);
