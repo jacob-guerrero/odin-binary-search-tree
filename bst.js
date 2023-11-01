@@ -241,6 +241,13 @@ const isBalanced = (root) => {
   return checkBalance(root).balanced;
 };
 
+const rebalance = (root) => {
+  const values =  inorder(root);
+
+  const newRoot = Tree(values);
+  return newRoot;
+};
+
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
     return;
@@ -273,3 +280,7 @@ console.log(isBalanced(BST.root));
 deleteNode(BST.root, 3);
 deleteNode(BST.root, 1);
 console.log(isBalanced(BST.root));
+const BSTRebalanced = rebalance(BST.root);
+prettyPrint(BSTRebalanced.root);
+console.log(levelOrder(BSTRebalanced.root));
+console.log(isBalanced(BSTRebalanced.root));
