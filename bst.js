@@ -298,4 +298,14 @@ console.log(preorder(BSTRandom.root));
 console.log(postorder(BSTRandom.root));
 console.log(inorder(BSTRandom.root));
 
+const addRand = (tree, amountRand) => {
+  for (let i = 0; i < amountRand; i++) {
+    const randNum = 100 + Math.floor(Math.random() * 100);
+    insert(tree, randNum);
+  }
+};
+addRand(BSTRandom.root, 10);
+console.log(levelOrder(BSTRandom.root));
+console.log(isBalanced(BSTRandom.root));
+
 console.log(randNumArray);
