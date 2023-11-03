@@ -261,51 +261,35 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-/* const array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
-const BST = Tree(array);
-console.log(BST.root);
-prettyPrint(BST.root);
-insert(BST.root, 15);
-prettyPrint(BST.root);
-deleteNode(BST.root, 8);
-prettyPrint(BST.root);
-console.log(find(BST.root, 9));
-console.log(levelOrder(BST.root));
-console.log(inorder(BST.root));
-console.log(preorder(BST.root));
-console.log(postorder(BST.root));
-console.log(height(find(BST.root, 9)));
-console.log(depth(find(BST.root, 23), BST.root));
-console.log(isBalanced(BST.root));
-deleteNode(BST.root, 3);
-deleteNode(BST.root, 1);
-console.log(isBalanced(BST.root));
-const BSTRebalanced = rebalance(BST.root);
-prettyPrint(BSTRebalanced.root);
-console.log(levelOrder(BSTRebalanced.root));
-console.log(isBalanced(BSTRebalanced.root)); */
+const testCode = (() => {
+  const randNumArray = Array.from({ length: 10 }, () =>
+    Math.floor(Math.random() * 100)
+  );
+  const BSTRandom = Tree(randNumArray);
+  console.log(isBalanced(BSTRandom.root));
 
-const randNumArray = Array.from({ length: 10 }, () =>
-  Math.floor(Math.random() * 100)
-);
-const BSTRandom = Tree(randNumArray);
-const isBSTBalanced = isBalanced(BSTRandom.root);
-console.log(isBSTBalanced);
+  prettyPrint(BSTRandom.root);
+  console.log(levelOrder(BSTRandom.root));
+  console.log(preorder(BSTRandom.root));
+  console.log(postorder(BSTRandom.root));
+  console.log(inorder(BSTRandom.root));
 
-prettyPrint(BSTRandom.root);
-console.log(levelOrder(BSTRandom.root));
-console.log(preorder(BSTRandom.root));
-console.log(postorder(BSTRandom.root));
-console.log(inorder(BSTRandom.root));
+  const addRand = (tree, amountRand) => {
+    for (let i = 0; i < amountRand; i++) {
+      const randNum = 100 + Math.floor(Math.random() * 100);
+      insert(tree, randNum);
+    }
+  };
 
-const addRand = (tree, amountRand) => {
-  for (let i = 0; i < amountRand; i++) {
-    const randNum = 100 + Math.floor(Math.random() * 100);
-    insert(tree, randNum);
-  }
-};
-addRand(BSTRandom.root, 10);
-console.log(levelOrder(BSTRandom.root));
-console.log(isBalanced(BSTRandom.root));
+  addRand(BSTRandom.root, 10);
+  console.log(isBalanced(BSTRandom.root));
 
-console.log(randNumArray);
+  const BSTRandomRebalanced = rebalance(BSTRandom.root);
+  console.log(isBalanced(BSTRandomRebalanced.root));
+
+  prettyPrint(BSTRandomRebalanced.root);
+  console.log(levelOrder(BSTRandomRebalanced.root));
+  console.log(preorder(BSTRandomRebalanced.root));
+  console.log(postorder(BSTRandomRebalanced.root));
+  console.log(inorder(BSTRandomRebalanced.root));
+})();
